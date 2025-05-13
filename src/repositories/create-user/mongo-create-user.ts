@@ -19,6 +19,15 @@ export class MongoCreateUserRepository implements ICreateUserRepository {
       throw new Error("Email already in use");
     }
 
+    const passwordStrong = (password: string): boolean => {
+      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/;
+      return passwordRegex.test(password);
+    };
+
+    if (!passwordStrong(params.password)) {
+      throw new Error("Password must be strong");
+    }
+
     const password = await bcrypt.hash(params.password, 10);
 
     // Completa os dados com os campos obrigatórios
