@@ -5,5 +5,5 @@ export interface LoginParams {
 }
 
 export interface IAuthRepository {
-  login(params: LoginParams): Promise<boolean>; // ou retornar token
+  login(params: LoginParams): Promise<string | null>; // ou retornar token
 }

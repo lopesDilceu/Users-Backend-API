@@ -14,13 +14,13 @@ export class LoginController implements IController {
         return badRequest("Email and password are required");
       }
 
-      const isValid = await this.authRepository.login({ email, password });
+      const token = await this.authRepository.login({ email, password });
 
-      if (!isValid) {
+      if (!token) {
         return unauthorized();
       }
 
-      return ok("Login successful"); // ou retornar JWT
+      return ok({ token });
     } catch {
       return serverError();
     }
