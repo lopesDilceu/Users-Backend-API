@@ -11,6 +11,14 @@ export class MongoCreateUserRepository implements ICreateUserRepository {
   async createUser(params: CreateUserParams): Promise<User> {
     const now = new Date();
 
+    const emailExists = await MongoClient.db
+      .collection("users")
+      .findOne({ email: params.email });
+
+    if (emailExists) {
+      throw new Error("Email already in use");
+    }
+
     const password = await bcrypt.hash(params.password, 10);
 
     // Completa os dados com os campos obrigatórios
