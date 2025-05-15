@@ -13,11 +13,14 @@ import { MongoGetUserRepository } from "./repositories/get-user/mongo-get-user";
 import { GetUserController } from "./controllers/get-user/get-user";
 import { MongoAuthRepository } from "./repositories/auth/mongo-auth";
 import { LoginController } from "./controllers/auth/login";
+import cors from "cors";
 
 const main = async () => {
   config();
 
   const app = express();
+
+  app.use(cors());
 
   app.use(express.json());
 
