@@ -36,7 +36,10 @@ export class CreateUserController implements IController {
     } catch (error) {
       if (error instanceof Error && error.message === "Email already in use") {
         return badRequest(error.message);
-      } else if (error instanceof Error && error.message === "Password must be strong") {
+      } else if (
+        error instanceof Error &&
+        error.message === "Password must be stronger"
+      ) {
         return badRequest(error.message);
       }
       return serverError();

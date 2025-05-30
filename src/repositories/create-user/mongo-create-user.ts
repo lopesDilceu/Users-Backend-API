@@ -25,7 +25,7 @@ export class MongoCreateUserRepository implements ICreateUserRepository {
     };
 
     if (!passwordStrong(params.password)) {
-      throw new Error("Password must be strong");
+      throw new Error("Password must be stronger");
     }
 
     const password = await bcrypt.hash(params.password, 10);
@@ -40,6 +40,8 @@ export class MongoCreateUserRepository implements ICreateUserRepository {
       updatedAt: now,
       deletedAt: null,
     };
+
+    console.log(userData);
 
     const { insertedId } = await MongoClient.db
       .collection("users")

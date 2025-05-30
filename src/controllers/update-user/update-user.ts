@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import validator from "validator";
 import { User } from "../../models/user";
 import { badRequest, ok, serverError } from "../helpers";
 import { HttpRequest, HttpResponse, IController } from "../protocols";
@@ -7,12 +8,14 @@ import { IUpdateUserRepository, UpdateUserParams } from "./protocols";
 export class UpdateUserController implements IController {
   constructor(private readonly updateUserRepository: IUpdateUserRepository) {}
 
-  async handle(httpRequest: HttpRequest<UpdateUserParams>): Promise<HttpResponse<User | string>> {
+  async handle(
+    httpRequest: HttpRequest<UpdateUserParams>
+  ): Promise<HttpResponse<User | string>> {
     try {
       const id = httpRequest?.params?.id;
       const body = httpRequest?.body;
 
-      if(!body){
+      if (!body) {
         return badRequest("Body missing fields");
       }
 
@@ -37,8 +40,13 @@ export class UpdateUserController implements IController {
       const user = await this.updateUserRepository.updateUser(id, body);
 
       return ok<User>(user);
-
     } catch (error) {
+      if (
+        error instanceof Error &&
+        error.message === "Password must be stronger"
+      ) {
+        return badRequest(error.message);
+      }
       return serverError();
     }
   }

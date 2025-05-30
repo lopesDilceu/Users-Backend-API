@@ -20,7 +20,7 @@ export class MongoAuthRepository implements IAuthRepository {
 
 
       const passwordMatch = await bcrypt.compare(params.password, user.password);
-            if (!passwordMatch) return null;
+      if (!passwordMatch) return null;
 
 
 
