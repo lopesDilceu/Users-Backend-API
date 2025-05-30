@@ -11,3 +11,19 @@ export interface CreateUserParams {
 export interface ICreateUserRepository {
   createUser(params: CreateUserParams): Promise<User>;
 }
+
+export interface UserClientResponse {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface AuthSuccessResponse {
+  token: string;
+  user: UserClientResponse;
+}
+
+export { User };
