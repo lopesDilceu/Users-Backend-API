@@ -15,6 +15,7 @@ const ALLOWED_IMAGE_DOMAINS = [
   'steamcdn-a.akamaihd.net',       // Outro CDN comum da Steam
   'community.cloudflare.steamstatic.com',
   'www.wingamestore.com',
+  'steamcdn-a.akamaihd.net',
   // Você pode adicionar um mais genérico se a checagem for com .endsWith('.steamstatic.com')
   // 'steamstatic.com', // Se sua lógica de checagem `isAllowedDomain` usar .endsWith('.NOMEDODOMINIOPRINCIPAL')
 ];  
