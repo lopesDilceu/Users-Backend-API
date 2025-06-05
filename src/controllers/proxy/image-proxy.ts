@@ -17,6 +17,7 @@ const ALLOWED_IMAGE_DOMAINS = [
   'www.wingamestore.com',
   'steamcdn-a.akamaihd.net',
   'store.ubisoft.com',
+  'media.rawg.io',
   // Você pode adicionar um mais genérico se a checagem for com .endsWith('.steamstatic.com')
   // 'steamstatic.com', // Se sua lógica de checagem `isAllowedDomain` usar .endsWith('.NOMEDODOMINIOPRINCIPAL')
 ];  
