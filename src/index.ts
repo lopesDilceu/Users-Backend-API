@@ -5,6 +5,7 @@ import { MongoClient } from "./database/mongo";
 import userRoutes from "./routes/user.routes"; // Importa as rotas de usuário
 import authRoutes from "./routes/auth.routes"; // Importa as rotas de autenticação
 import imageProxyRoutes from "./routes/image-proxy.routes";
+import ggdProxyRoutes from "./routes/ggd.routes";
 
 const main = async () => {
   config();
@@ -22,6 +23,8 @@ const main = async () => {
   app.use("/users", userRoutes);
 
   app.use("/proxy", imageProxyRoutes);
+
+  app.use("/api/ggd", ggdProxyRoutes);
 
   const port = process.env.PORT || 8000;
 
